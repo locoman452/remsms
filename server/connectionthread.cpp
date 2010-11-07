@@ -9,6 +9,10 @@ ConnectionThread::ConnectionThread(int socketDescriptor, QObject *parent)
     tcpSocket = new QTcpSocket(this);
 
     connect(tcpSocket, SIGNAL(readyRead()), this, SLOT(readyRead()));
+
+    SMS sms = smsmanager.fetchSmsById(1);
+
+    printf("%s", sms.message);
 }
 
 void ConnectionThread::run()

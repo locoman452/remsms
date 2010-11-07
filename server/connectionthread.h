@@ -5,6 +5,8 @@
 #include <QTcpSocket>
 #include <QXmlStreamReader>
 
+#include "smsmanager.h"
+
 class ConnectionThread : public QThread
 {
     Q_OBJECT
@@ -26,6 +28,8 @@ private:
     int socketDescriptor;
     QString text;
     QXmlStreamReader xml;
+
+    SMSManager smsmanager;
 
     quint16 blockSize;
 };
