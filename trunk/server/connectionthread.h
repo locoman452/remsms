@@ -5,9 +5,6 @@
 #include <QTcpSocket>
 #include <QXmlStreamReader>
 
-#include "phone.h"
-#include "sms.h"
-
 class ConnectionThread : public QThread
 {
     Q_OBJECT
@@ -30,7 +27,6 @@ private:
     QString text;
     QXmlStreamReader xml;
 
-    Phone phone;
     quint16 blockSize;
 };
 
