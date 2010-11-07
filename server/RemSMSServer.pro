@@ -6,6 +6,7 @@
 
 QT       += core
 QT       += network
+QT       += sql
 
 QT       -= gui
 
@@ -19,9 +20,11 @@ TEMPLATE = app
 SOURCES += main.cpp \
     program.cpp \
     server.cpp \
-    connectionthread.cpp
+    connectionthread.cpp \
+    smsmanager.cpp
 
 HEADERS += \
     program.h \
     server.h \
-    connectionthread.h
+    connectionthread.h \
+    smsmanager.h
