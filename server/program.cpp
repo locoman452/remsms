@@ -1,9 +1,10 @@
 #include "program.h"
 
-#include "server.h"
-
-Program::Program(QObject *parent) :
-    QObject(parent)
+Program::Program(Log * logger, QObject *parent) :
+    QThread(parent)
 {
-    Server server;
+    this->logger = logger;
+    logger->addMessage("Program starting");
+
+    server = new Server(logger, this);
 }
