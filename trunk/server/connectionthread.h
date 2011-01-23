@@ -1,4 +1,4 @@
-#ifndef CONNECTIONTHREAD_H
+    #ifndef CONNECTIONTHREAD_H
 #define CONNECTIONTHREAD_H
 
 #include <QThread>
@@ -6,12 +6,13 @@
 #include <QXmlStreamReader>
 
 #include "smsmanager.h"
+#include "log.h"
 
 class ConnectionThread : public QThread
 {
     Q_OBJECT
 public:
-    ConnectionThread(int socketDescriptor, QObject *parent);
+    ConnectionThread(Log * logger, int socketDescriptor, QObject *parent);
 
     void run();
 
@@ -22,6 +23,8 @@ public slots:
     void readyRead();
 
 private:
+    Log * logger;
+
     void parseXml();
 
     QTcpSocket *tcpSocket;

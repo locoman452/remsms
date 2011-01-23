@@ -1,17 +1,24 @@
 #ifndef PROGRAM_H
 #define PROGRAM_H
 
-#include <QObject>
+#include <QThread>
 
-class Program : public QObject
+#include "server.h"
+#include "log.h"
+
+class Program : public QThread
 {
     Q_OBJECT
 public:
-    Program(QObject *parent = 0);
+    Program(Log * logger, QObject *parent = 0);
 
 signals:
 
 public slots:
+
+private:
+    Server * server;
+    Log * logger;
 
 };
 

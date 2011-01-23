@@ -21,10 +21,12 @@ SOURCES += main.cpp \
     program.cpp \
     server.cpp \
     connectionthread.cpp \
-    smsmanager.cpp
+    smsmanager.cpp \
+    log.cpp
 
 HEADERS += \
     program.h \
     server.h \
     connectionthread.h \
-    smsmanager.h
+    smsmanager.h \
+    log.h

@@ -2,17 +2,18 @@
 
 #include <QtNetwork>
 
-ConnectionThread::ConnectionThread(int socketDescriptor, QObject *parent)
+ConnectionThread::ConnectionThread(Log * logger, int socketDescriptor, QObject *parent)
     : QThread(parent), socketDescriptor(socketDescriptor)
 {
+    this->logger = logger;
+
     blockSize = 0;
-    tcpSocket = new QTcpSocket(this);
+    tcpSocket = new QTcpSocket();
+    tcpSocket->moveToThread(this);
 
     connect(tcpSocket, SIGNAL(readyRead()), this, SLOT(readyRead()));
 
-    SMS sms = smsmanager.fetchSmsById(1);
-
-    printf("%s", sms.message);
+    logger->addMessage("New connection started");
 }
 
 void ConnectionThread::run()
@@ -25,6 +26,7 @@ void ConnectionThread::run()
 
 void ConnectionThread::readyRead()
 {
+    logger->addMessage("New data received");
     xml.clear();
     xml.addData(tcpSocket->readAll());
     this->parseXml();
@@ -32,5 +34,5 @@ void ConnectionThread::readyRead()
 
 void ConnectionThread::parseXml()
 {
-
+    logger->addMessage("Parsing data");
 }

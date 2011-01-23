@@ -4,17 +4,21 @@
 #include <QTcpServer>
 #include <QObject>
 
-#define SERVER_IP "192.168.0.3"
+#include "log.h"
 
 class Server : public QTcpServer
 {
     Q_OBJECT
 
 public:
-    Server(QObject *parent = 0);
+    Server(Log * logger, QObject *parent = 0);
+    ~Server();
 
 protected:
      void incomingConnection(int socketDescriptor);
+
+private:
+     Log * logger;
 };
 
 #endif // SERVER_H
