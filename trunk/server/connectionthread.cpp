@@ -2,10 +2,11 @@
 
 #include <QtNetwork>
 
-ConnectionThread::ConnectionThread(Log * logger, int socketDescriptor, QObject *parent)
+ConnectionThread::ConnectionThread(Log * logger, SMSManager * smsManager, int socketDescriptor, QObject *parent)
     : QThread(parent), socketDescriptor(socketDescriptor)
 {
     this->logger = logger;
+    this->smsManager = smsManager;
 
     blockSize = 0;
     tcpSocket = new QTcpSocket();
@@ -13,7 +14,13 @@ ConnectionThread::ConnectionThread(Log * logger, int socketDescriptor, QObject *
 
     connect(tcpSocket, SIGNAL(readyRead()), this, SLOT(readyRead()));
 
-    logger->addMessage("New connection started");
+    logger->addMessage("New connection started (" + QString::number(socketDescriptor) + ")");
+}
+
+ConnectionThread::~ConnectionThread()
+{
+    logger->addMessage("Connection closed (" + QString::number(this->socketDescriptor) + ")");
+
 }
 
 void ConnectionThread::run()

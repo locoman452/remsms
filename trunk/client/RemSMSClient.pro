@@ -4,15 +4,19 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui network
 
 TARGET = RemSMSClient
 TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    log.cpp \
+    client.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    log.h \
+    client.h
 
 FORMS    += mainwindow.ui

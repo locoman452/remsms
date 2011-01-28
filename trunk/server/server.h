@@ -5,6 +5,7 @@
 #include <QObject>
 
 #include "log.h"
+#include "smsmanager.h"
 
 class Server : public QTcpServer
 {
@@ -19,6 +20,8 @@ protected:
 
 private:
      Log * logger;
+
+     SMSManager * smsManager;
 };
 
 #endif // SERVER_H
