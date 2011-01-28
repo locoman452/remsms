@@ -11,6 +11,8 @@ Server::Server(Log * logger, QObject *parent)
 
     logger->addMessage("Opening tcp socket at 0.0.0.0:6666");
 
+    smsManager = new SMSManager();
+
     if(!this->listen(QHostAddress::Any, 6666)){
         logger->addMessage("Tcp socket could not be opened", Log::ERROR);
     }
@@ -23,7 +25,7 @@ Server::~Server()
 
 void Server::incomingConnection(int socketDescriptor)
 {
-    ConnectionThread * thread = new ConnectionThread(logger, socketDescriptor, this);
+    ConnectionThread * thread = new ConnectionThread(logger, smsManager, socketDescriptor, this);
     connect(thread, SIGNAL(finished()), thread, SLOT(deleteLater()));
     thread->start();
 }

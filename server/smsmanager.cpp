@@ -6,12 +6,14 @@
 
 SMSManager::SMSManager()
 {
-    db = QSqlDatabase::addDatabase("QMYSQL");
-    db.setHostName("localhost");
-    db.setDatabaseName("remsms");
-    db.setUserName("remsms");
-    db.setPassword("remsms");
-    db.open();
+    if(!db.isOpen()){
+        db = QSqlDatabase::addDatabase("QMYSQL");
+        db.setHostName("localhost");
+        db.setDatabaseName("remsms");
+        db.setUserName("remsms");
+        db.setPassword("remsms");
+        db.open();
+    }
 }
 
 void SMSManager::insertSms(SMS sms)

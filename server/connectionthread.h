@@ -12,7 +12,8 @@ class ConnectionThread : public QThread
 {
     Q_OBJECT
 public:
-    ConnectionThread(Log * logger, int socketDescriptor, QObject *parent);
+    ConnectionThread(Log * logger, SMSManager * smsManager, int socketDescriptor, QObject *parent);
+    ~ConnectionThread();
 
     void run();
 
@@ -32,7 +33,7 @@ private:
     QString text;
     QXmlStreamReader xml;
 
-    SMSManager smsmanager;
+    SMSManager * smsManager;
 
     quint16 blockSize;
 };

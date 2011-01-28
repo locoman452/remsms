@@ -8,7 +8,7 @@
 int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
-    Log * logger = new Log(true, "C:\\Users\\Eric Lembregts\\Documents\\log.txt");
+    Log * logger = new Log(true, "log.txt");
     logger->addMessage("Logging started");
 
     Program *program = new Program(logger, &a);
